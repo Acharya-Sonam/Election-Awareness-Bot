@@ -3,5 +3,9 @@
     "id": "ID requirements vary widely. Some places require a photo ID (like a driver's license), while others accept a utility bill or no ID at all if you are on the voter roll. Always check your local requirements.",
     "primary": "A primary election is how political parties choose their candidates for the general election. You may need to be registered with a specific party to vote in their primary.",
     "where": "You can find your polling location by checking your local election authority's website or looking at your voter registration card.",
-    "mail": "Voting by mail (or absentee voting) allows you to fill out your ballot at home and mail it in or drop it at a secure box. Make sure to request your ballot early!"
+    "mail": "Voting by mail (or absentee voting) allows you to fill out your ballot at home and mail it in or drop it at a secure box. Make sure to request your ballot early!",
+    "18": "Yes! If you are 18 years old or older and a citizen, you are eligible to vote in most democratic elections. Ensure you are registered!",
+    "age": "In most places, you must be at least 18 years old on or before Election Day to vote.",
+    "can i vote": "If you are 18+ and a citizen, you generally can vote! Use the Eligibility Checker on the left to be sure.",
+    "how to vote": "To vote, first ensure you are registered. Then, you can either vote early, by mail, or in person at your polling station on Election Day."
 }
