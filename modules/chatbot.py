@@ -1,11 +1,13 @@
 import streamlit as st
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 import os
 from utils.helpers import load_json
 
 def get_local_response(prompt, faq_data):
     """Fallback logic to get response from local FAQ data"""
     prompt_lower = prompt.lower()
+    # Simple keyword matching for local fallback
     for key, answer in faq_data.items():
         if key in prompt_lower:
             return answer
@@ -16,13 +18,12 @@ def render_chatbot():
     
     faq_data = load_json('data/faq.json')
     
-    # Securely load API key from Streamlit secrets or environment
+    # Securely load API key
     api_key = None
     try:
         api_key = st.secrets.get("GEMINI_API_KEY")
     except Exception:
         pass
-        
     if not api_key:
         api_key = os.environ.get("GEMINI_API_KEY")
     
@@ -47,16 +48,20 @@ def render_chatbot():
         if api_key:
             with st.spinner("AI is thinking..."):
                 try:
-                    genai.configure(api_key=api_key)
-                    model = genai.GenerativeModel('gemini-1.5-flash',
-                                                  system_instruction="You are an expert, helpful, and non-partisan Election AI Assistant. Answer questions about voting, registration, ID requirements, and the election process clearly and concisely.")
+                    client = genai.Client(api_key=api_key)
                     
+                    # Convert history for google-genai SDK
                     history = []
                     for msg in st.session_state.messages[:-1]:
                         role = "user" if msg["role"] == "user" else "model"
-                        history.append({"role": role, "parts": [msg["content"]]})
+                        history.append(types.Content(role=role, parts=[types.Part(text=msg["content"])]))
                     
-                    chat = model.start_chat(history=history)
+                    config = types.GenerateContentConfig(
+                        system_instruction="You are an expert, helpful, and non-partisan Election AI Assistant. Answer questions about voting, registration, ID requirements, and the election process clearly and concisely.",
+                        temperature=0.7
+                    )
+                    
+                    chat = client.chats.create(model="gemini-1.5-flash", config=config, history=history)
                     response = chat.send_message(prompt)
                     bot_reply = response.text
                 except Exception as e:
