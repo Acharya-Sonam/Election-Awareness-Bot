@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Democracy Guide | Your Election AI Assistant</title>
+    <meta name="description" content="An interactive AI assistant to help you understand the election process and timelines.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="background-decor">
+        <div class="glow-orb top-left"></div>
+        <div class="glow-orb bottom-right"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <i data-lucide="vote"></i>
+            <span>Democracy Guide</span>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="active">Process</a>
+            <a href="#">Resources</a>
+            <a href="#">About</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="content-wrapper">
+            <!-- Left Side: Timeline & Educational Content -->
+            <section class="timeline-section">
+                <header class="section-header">
+                    <h1>The Election Journey</h1>
+                    <p>Navigate the steps of the democratic process. Click on any step to learn more.</p>
+                </header>
+
+                <div class="timeline" id="election-timeline">
+                    <!-- Timeline items will be injected by app.js -->
+                </div>
+            </section>
+
+            <!-- Right Side: Hybrid Chat Assistant -->
+            <section class="assistant-section">
+                <div class="assistant-card">
+                    <div class="assistant-header">
+                        <div class="assistant-avatar">
+                            <i data-lucide="bot"></i>
+                        </div>
+                        <div class="assistant-info">
+                            <h2>Election AI</h2>
+                            <span class="status"><span class="dot"></span> Online and ready</span>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-container" id="chat-container">
+                        <div class="message system-message">
+                            <p>Hello! I'm your Election AI Assistant. I can help you understand the timeline on the left, or answer specific questions about voter registration, polling, and results. What would you like to know?</p>
+                        </div>
+                        <div class="suggestions">
+                            <button class="chip" onclick="handleChipClick('How do I register to vote?')">How do I register?</button>
+                            <button class="chip" onclick="handleChipClick('What is a primary election?')">What is a primary?</button>
+                            <button class="chip" onclick="handleChipClick('What ID do I need?')">What ID do I need?</button>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-area">
+                        <input type="text" id="chat-input" placeholder="Ask a question about elections...">
+                        <button id="send-btn" class="send-button" aria-label="Send message">
+                            <i data-lucide="send"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
