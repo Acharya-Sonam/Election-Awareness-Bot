@@ -1,0 +1,27 @@
+[
+    {
+        "step": 1,
+        "title": "Voter Registration",
+        "description": "Ensure you are registered to vote at your current address before the deadline."
+    },
+    {
+        "step": 2,
+        "title": "Research Candidates",
+        "description": "Learn about the candidates, their platforms, and any ballot measures."
+    },
+    {
+        "step": 3,
+        "title": "Make a Plan",
+        "description": "Decide if you will vote early, by mail, or in person on Election Day. Check your polling location."
+    },
+    {
+        "step": 4,
+        "title": "Election Day",
+        "description": "Bring necessary ID, go to your polling station, and cast your vote."
+    },
+    {
+        "step": 5,
+        "title": "Election Results",
+        "description": "Votes are counted and results are certified by election officials."
+    }
+]
