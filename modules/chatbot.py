@@ -7,6 +7,7 @@ from utils.helpers import load_json
 def get_local_response(prompt, faq_data):
     """Fallback logic to get response from local FAQ data"""
     prompt_lower = prompt.lower()
+    # Simple keyword matching for local fallback
     for key, answer in faq_data.items():
         if key in prompt_lower:
             return answer
@@ -54,6 +55,7 @@ def render_chatbot():
                     try:
                         client = genai.Client(api_key=api_key)
                         
+                        # Convert history for google-genai SDK
                         history = []
                         for msg in st.session_state.messages[:-1]:
                             role = "user" if msg["role"] == "user" else "model"
@@ -73,18 +75,14 @@ def render_chatbot():
                         # Continue to next model if 404
                         if "404" in str(e) or "not found" in str(e).lower():
                             continue
-                        else:
-                            bot_reply = f"AI Service Error: {e}"
-                            break
+                        # Stop if 429 (quota) or other fatal errors, but handle silently
+                        break
                 
-                if not success and not bot_reply:
-                    st.info("Falling back to local knowledge base...")
+                if not success:
+                    # Silently fall back to local knowledge base to keep UI clean
                     bot_reply = get_local_response(prompt, faq_data)
-                elif not success:
-                    st.info("Falling back to local knowledge base...")
-                    bot_reply = f"{bot_reply}\n\n{get_local_response(prompt, faq_data)}"
         else:
-            st.info("Using local knowledge base (Gemini API key not found)...")
+            # Silently fall back if no API key
             bot_reply = get_local_response(prompt, faq_data)
 
         with st.chat_message("assistant"):
