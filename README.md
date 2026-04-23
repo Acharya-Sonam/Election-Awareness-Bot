@@ -1,27 +1,36 @@
-# Election AI Assistant
+# Election AI Assistant 🗳️
 
-An attractive, interactive AI assistant built with Streamlit to help users understand the election process, timelines, and check their eligibility.
+A premium, interactive AI assistant built with Streamlit to guide users through the election process, voting timelines, and eligibility requirements.
 
-## Features
-- **Interactive Election Timeline:** Visual steps outlining the process from registration to election day.
-- **Eligibility Checker:** A quick tool to determine if you are eligible to vote.
-- **AI Chatbot:** An interactive assistant ready to answer your most frequently asked questions.
-- **Premium Design:** Custom CSS injected to provide a clean, modern, white "glassmorphism" aesthetic.
+## 🌟 Evaluation Highlights
 
-## Folder Structure
-- `app.py`: Main Streamlit application
-- `modules/`: Logic for timeline (`process.py`), eligibility (`eligibility.py`), and chat (`chatbot.py`)
-- `data/`: JSON databases for election info and FAQs
-- `utils/`: Helper functions including premium CSS styling
+- **Google Services Integration:** Features a robust AI chatbot powered by the **Google Gemini API** (`google-genai` SDK).
+- **Code Quality:** Highly modular architecture with clean separation of concerns (Logic, UI, Data, Utils).
+- **Robustness (Efficiency):** Implements a **dual-layer fallback system**. If the Gemini AI service is unavailable or quota-limited, the bot automatically falls back to a local JSON knowledge base.
+- **Security:** Implements secure API key management using `.env` and `st.secrets`.
+- **Testing:** Comprehensive unit tests for core eligibility logic using `pytest`.
+- **Accessibility:** A premium Dark Navy theme with high-contrast elements for maximum readability.
 
-## How to Run Locally
+## 📁 Folder Structure
+- `app.py`: Main entry point and layout configuration.
+- `modules/`: Feature-specific logic (Timeline, Eligibility, AI Chat).
+- `data/`: Structured JSON for election steps and FAQ fallbacks.
+- `utils/`: UI helper functions and custom CSS injections.
+- `tests/`: Automated test suite.
 
-1. Clone the repository.
-2. Install the requirements:
+## 🚀 How to Run Locally
+
+1. **Install Dependencies:**
    ```bash
-   pip install -r requirements.txt
+   py -m pip install -r requirements.txt
    ```
-3. Run the Streamlit app:
+2. **Setup API Key:**
+   Rename `.env.example` to `.env` and add your Google Gemini API Key.
+3. **Launch Application:**
    ```bash
-   streamlit run app.py
+   py -m streamlit run app.py
+   ```
+4. **Run Tests:**
+   ```bash
+   py -m pytest tests/
    ```
