@@ -1,5 +1,12 @@
 import streamlit as st
 
+def is_eligible(age, citizen):
+    """
+    Check if a person meets the basic eligibility requirements.
+    Must be 18 or older and a citizen.
+    """
+    return age >= 18 and citizen == "Yes"
+
 def check_eligibility():
     st.header("✅ Voting Eligibility Checker")
     st.write("Answer a few quick questions to see if you meet the basic requirements to vote.")
@@ -9,7 +16,7 @@ def check_eligibility():
     registered = st.radio("Are you currently registered to vote?", ("Yes", "No", "Not Sure"))
     
     if st.button("Check Eligibility"):
-        if age >= 18 and citizen == "Yes":
+        if is_eligible(age, citizen):
             if registered == "Yes":
                 st.success("🎉 You appear to be fully eligible and registered to vote! Check your local polling station.")
             else:
